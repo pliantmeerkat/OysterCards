@@ -5,5 +5,8 @@
 ## dependancies
   * Ruby > 2.5.0
   * Bundle/ Bundler to view gemfiles
-  
+  * rspec
+
+## contributors
+  * ollie28
 

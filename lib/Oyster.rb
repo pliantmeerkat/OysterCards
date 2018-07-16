@@ -3,7 +3,7 @@ class Oyster
   MAXIMUM_BALANCE = 90
   attr_accessor :balance
   def initialize
-    @balance = 0
+    @balance = 0.00
     @errors = ["cannot top up max balance of #{MAXIMUM_BALANCE} reached",
                'cannot deduct not enough money on card']
   end
