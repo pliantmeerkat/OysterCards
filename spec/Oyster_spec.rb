@@ -1,5 +1,6 @@
 require './lib/Oyster'
 describe Oyster do
+  before(:each) { subject.balance = 1.00 }
   context 'Feature 1 - Balance' do
     describe '#balance' do
       it { expect(subject).to respond_to(:balance) }
@@ -9,7 +10,7 @@ describe Oyster do
     describe '#top_up' do
       before(:each) { subject.top_up(1.00) }
       it { expect(subject).to respond_to(:top_up).with(1).argument }
-      it { expect(subject.balance).to eq(1.0) }
+      it { expect(subject.balance).to eq(2.0) }
       it 'raises error if too much is topped up' do
         max_bal = Oyster::MAXIMUM_BALANCE
         expect { subject.top_up(100) }.to raise_error(['cannot top up',
@@ -39,6 +40,10 @@ describe Oyster do
       before(:each) { subject.tap_in }
       it { expect(subject).to respond_to(:tap_in).with(1).argument }
       it { expect(subject.in_journey).to eq(true) }
+      it 'raises an error when tapping in with < 1.00 balance' do
+        subject.balance = 0
+        expect { subject.tap_in }.to raise_error 'Please top up'
+      end
     end
   end
   context 'Featre 5 - Tap out' do
