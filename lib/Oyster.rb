@@ -1,8 +1,11 @@
+require 'Station'
 # Oyster
-class Oyster
+class Oyster < Station
   MAXIMUM_BALANCE = 90
   attr_accessor :balance
+  attr_accessor :in_journey
   def initialize
+    @in_journey = false
     @balance = 0.00
     @errors = ["cannot top up max balance of #{MAXIMUM_BALANCE} reached",
                'cannot deduct not enough money on card']
@@ -18,11 +21,11 @@ class Oyster
     @balance -= amount
   end
 
-  def tap_in
-
+  def tap_in(station=nil)
+    @in_journey = true
   end
 
-  def tap_out
-
+  def tap_out(station=nil)
+    @in_journey = false
   end
 end

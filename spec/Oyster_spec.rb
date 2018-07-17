@@ -21,7 +21,7 @@ describe Oyster do
   end
   context 'Feature 3 - Deduct' do
     describe '#deduct' do
-      before(:each) { subject.balance = 10.00}
+      before(:each) { subject.balance = 10.00 }
       it { expect(subject).to respond_to(:deduct).with(1).argument }
       it 'can deduct money from the card' do
         subject.deduct(1.00)
@@ -36,13 +36,22 @@ describe Oyster do
   end
   context 'Feature 4 - Tap in' do
     describe '#tap_in' do
-      it { expect(subject).to respond_to(:tap_in) }
+      before(:each) { subject.tap_in }
+      it { expect(subject).to respond_to(:tap_in).with(1).argument }
+      it { expect(subject.in_journey).to eq(true) }
     end
   end
   context 'Featre 5 - Tap out' do
     describe '#tap_out' do
-      it { expect(subject).to respond_to(:tap_out) }
+      before(:each) { subject.tap_out }
+      it { expect(subject).to respond_to(:tap_out).with(1).argument }
+      it { expect(subject.in_journey).to eq(false) }
+    end
+  end
+  context 'Feature 6 - In Journey' do
+    describe '#in_journey?' do
+      it { expect(subject).to respond_to(:in_journey) }
+      it { expect(subject.in_journey).to be(true).or be(false) }
     end
   end
 end
-
