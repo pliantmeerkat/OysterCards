@@ -1,10 +1,8 @@
 # Sation class
 class Travel
-  MAXIMUM_BALANCE = 90.00
-  MINIMUM_CHARGE = 1.00
-  STARTING_BALANCE = 0.00
-
-  def initialize
-    
-  end
+  MAXIMUM_BALANCE = 9000
+  MINIMUM_CHARGE = 100
+  PENALTY_CHARGE = 600
+  STARTING_BALANCE = 0
+  ZONES = []
 end
